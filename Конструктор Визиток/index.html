@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Конструктор визиток</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="constructor">
+		<h2>Конструктор визиток</h2>
+		<div class="required-field">* Обязательное поле</div>
+		<form>
+			<div class="block">
+				<label for="Org">Наименование организации</label>
+				<input type="text" name="" id="Org" required>
+			</div>
+			<div class="block">
+				<label for="name">Фамилия, имя, отчество</label>
+				<div class="container">
+					<input type="text" name="" id="name" required>
+					<div class="inner-container">
+						<div class="inner-container_straighten-block"> 
+							<label class="straigthen">
+								<input type="radio" name="straigthen" value="L">
+								<div class="straigthen-img">
+									<img src="resources/left.svg">
+								</div>
+							</label>
+							<label class="straigthen">
+								<input type="radio" name="straigthen" checked="" value="C">
+								<div class="straigthen-img">
+									<img src="resources/center.svg">
+								</div>
+							</label>
+							<label class="straigthen">
+								<input type="radio" name="straigthen" value="R">
+								<div class="straigthen-img">
+									<img src="resources/right.svg">
+								</div>
+							</label>
+						</div>
+						<div class="inner-container_size-block">
+							<label class="fsize">
+								<input type="radio" name="fsize" value="24">
+								<span>24px</span>
+							</label>
+							<label class="fsize">
+								<input type="radio" name="fsize" checked="" value="26">
+								<span>26px</span>
+							</label>
+							<label class="fsize">
+								<input type="radio" name="fsize" value="28">
+								<span>28px</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="palette">
+					<input type="radio" name="color" id="colorful1" checked="" value="1">
+					<label for="colorful1" id="lcolorful1"></label>
+					<input type="radio" name="color" id="colorful2" value="2">
+					<label for="colorful2" id="lcolorful2"></label>
+					<input type="radio" name="color" id="colorful3" value="3">
+					<label for="colorful3" id="lcolorful3"></label>
+					<input type="radio" name="color" id="colorful4" value="4">
+					<label for="colorful4" id="lcolorful4"></label>
+					<input type="radio" name="color" id="colorful5" value="5"> 
+					<label for="colorful5" id="lcolorful5"></label>
+					<input type="radio" name="color" id="colorful6" value="6">
+					<label for="colorful6" id="lcolorful6"></label>
+				</div>
+			</div>
+			<div class="block">
+				<label for="position">Должность</label>
+				<div class="container">
+					<input type="text" name="" id="position" required>
+					<div class="inner-container">
+						<div class="inner-container_straighten-block"> 
+							<label class="straigthen">
+								<input type="radio" name="straigthen2" value="L">
+								<div class="straigthen-img">
+									<img src="resources/left.svg">
+								</div>
+							</label>
+							<label class="straigthen">
+								<input type="radio" name="straigthen2" checked="" value="C">
+								<div class="straigthen-img">
+									<img src="resources/center.svg">
+								</div>
+							</label>
+							<label class="straigthen">
+								<input type="radio" name="straigthen2" value="R">
+								<div class="straigthen-img">
+									<img src="resources/right.svg">
+								</div>
+							</label>
+						</div>
+						<div class="inner-container_size-block">
+							<label class="fsize">
+								<input type="radio" name="fsize2" value="14">
+								<span>14px</span>
+							</label>
+							<label class="fsize">
+								<input type="radio" name="fsize2" value="16" checked="">
+								<span>16px</span>
+							</label>
+							<label class="fsize">
+								<input type="radio" name="fsize2" value="18">
+								<span>18px</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="palette">
+					<input type="radio" name="color2" id="black1" checked="" value="1">
+					<label for="black1" id="lblack1"></label>
+					<input type="radio" name="color2" id="black2" value="2">
+					<label for="black2" id="lblack2"></label>
+					<input type="radio" name="color2" id="black3" value="3"> 
+					<label for="black3" id="lblack3"></label>
+					<input type="radio" name="color2" id="black4" value="4">
+					<label for="black4" id="lblack4"></label>
+					<input type="radio" name="color2" id="black5" value="5"> 
+					<label for="black5" id="lblack5"></label>
+					<input type="radio" name="color2" id="black6" value="6">
+					<label for="black6" id="lblack6"></label>
+				</div>
+			</div>
+			<div class="block">
+				<label for="phone">Телефон</label>
+				<input type="tel" name="" id="phone" required placeholder="+7">
+				<div class="inner-block">
+					<img src="resources/add.svg" id="addPhone">
+					<span>Добавить еще один телефон</span>
+				</div>
+				<div class="hidden-block none">
+					<input type="tel" name="" id="phone2" value="no_extra_phone" placeholder="+7">
+					<img src="resources/remove.svg" id="removePhone">
+				</div>
+			</div>
+			<div class="block">
+				<label for="mail">E-mail</label>
+				<div class="container">
+					<input type="email" name="" id="mail" required>
+					<div class="inner-container">
+						<input type="checkbox" name="" checked="" id="showMail">
+						<label>Отображать</label>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<label for="location">Адрес</label>
+				<div class="container">
+					<input type="text" name="" id="location" required>
+					<div class="inner-container">
+						<input type="checkbox" name="" checked="" id="showLocation">
+						<label>Отображать</label>
+					</div>	
+				</div>
+			</div>
+			<div class="submit-button" id="sub">Применить</div>
+		</form>
+	</div>
+	<div class="card-example">
+		<div id="Org-card-example"></div>
+		<div id="name-card-example"></div>
+		<div id="position-card-example"></div>
+		<div class="extra-info-block">
+			<div id="phone-card-example"></div>
+			<div id="phone2-card-example" class="none"></div>
+			<div id="mail-card-example"></div>
+			<div id="location-card-example"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="my_script.js"></script>
+	<!-- Маска для телефона -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script>
+		$(function() {
+		$('#phone').mask('+7(000)000-00-00');
+		$('#phone2').mask('+7(000)000-00-00');
+		});
+	</script>  
+</body>
+</html>
