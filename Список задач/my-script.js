@@ -4,9 +4,13 @@ let essentialObj = {
     editingNode: undefined,
     counter: 0,
 };
+// searching for all necessary elements
 let priority_checkbox = (document.querySelector(".task-card_priority-block_checkbox")).children[0];
 let toDoCard = document.querySelector(".task-card");
 let desc_input = document.querySelector(".task-card_description");
+let accept_bttn = document.querySelector(".task-card_buttons-block_button-save");
+let cancel_bttn = document.querySelector(".task-card_buttons-block_button-cancel");
+let task_field = document.querySelector(".task-container_task-field");
 // making card visible for the first time, update it
 for (const i of document.querySelector(".task-container_head-panel_add-panel").children) {
     i.addEventListener('click', function() {
@@ -16,14 +20,17 @@ for (const i of document.querySelector(".task-container_head-panel_add-panel").c
             essentialObj.running_process = "adding";
             essentialObj.accept_bttn_click_purpose = "add";
             toDoCard.classList.remove("none");
+            elementPositioning();
             if (desc_input.value) {
                 desc_input.value = null;
             }
             priority_checkbox.setAttribute("src", "res/checkbox-empty.svg");
         } else if (essentialObj.running_process === "adding") {
             alert("Firstly, add or cancel current task!");
-        } else if  (essentialObj.running_process === "editing") {
+        } else if (essentialObj.running_process === "editing") {
             alert("Adding forbidden! Firstly complete editing operation!");
+        } else if (essentialObj.running_process === "confirmation") {
+            alert("Confirm deleting!");
         }
     });
 }
@@ -38,9 +45,6 @@ for (const i of document.querySelector(".task-card_priority-block").children) {
     });
 }
 // listeners for card buttons
-let accept_bttn = document.querySelector(".task-card_buttons-block_button-save");
-let cancel_bttn = document.querySelector(".task-card_buttons-block_button-cancel");
-let task_field = document.querySelector(".task-container_task-field");
 // accept-button 
 function accept_bttn_click() {
     // in case if we want to add new task
@@ -49,7 +53,7 @@ function accept_bttn_click() {
         let buffer_array = buildingTaskElement(desc_input.value);
         let single_task = buffer_array[0];
         let isPrimaryTask = buffer_array[1];
-        insertTask(isPrimaryTask, single_task);
+        insertTask(isPrimaryTask, single_task, false);
         toDoCard.classList.add("none");
         essentialObj.running_process = null;
     // in case if we want to edit existing one
@@ -58,7 +62,7 @@ function accept_bttn_click() {
         let buffer_array = editTask(desc_input.value);
         let single_task = buffer_array[0];
         let isPrimaryTask = buffer_array[1];
-        insertTask(isPrimaryTask, single_task);
+        insertTask(isPrimaryTask, single_task), false;
         toDoCard.classList.add("none");
         essentialObj.editingNode = undefined;
         essentialObj.running_process = null;
@@ -136,17 +140,21 @@ function buildingTaskElement(taskName) {
     return [taskContainerSingleTask, isPrimaryTask];
 }
 // function of inserting elem 
-function insertTask(isPrimary, elem) {
+function insertTask(isPrimary, elem, isDone) {
     let active_tasks = task_field.children;
-    if (active_tasks.length === 0 || !isPrimary) {
+    if (isDone) {
         task_field.appendChild(elem);
     } else {
-        for (const i of active_tasks) {
-            // console.log(i);
-            let img = (i.querySelector(".task-container_single-task_priority").children)[0];
-            if (img.className === "visibility") {
-                task_field.insertBefore(elem, i);
-                break;
+        if (active_tasks.length === 0 || !isPrimary) {
+            task_field.appendChild(elem);
+        } else {
+            for (const i of active_tasks) {
+                // console.log(i);
+                let img = (i.querySelector(".task-container_single-task_priority").children)[0];
+                if (img.className === "visibility") {
+                    task_field.insertBefore(elem, i);
+                    break;
+                }
             }
         }
     }
@@ -157,13 +165,16 @@ function delegate() {
     console.log(clicked);
     let generalSibling = ((clicked.parentNode).parentNode).parentNode;
     if (clicked.getAttribute("src") === "res/trashbin.svg") {
-        generalSibling.parentNode.removeChild(generalSibling);
+        if (essentialObj.running_process === null) {
+            confirmtaion(generalSibling);
+        }
     } else if (clicked.getAttribute("src") === "res/pencil.svg") {
         console.log(essentialObj.running_process);
         if (essentialObj.running_process === null) {
             essentialObj.running_process = "editing";
             essentialObj.accept_bttn_click_purpose = "edit";
             toDoCard.classList.remove("none");
+            elementPositioning();
             essentialObj.editingNode = generalSibling;
             desc_input.value = generalSibling.querySelector(".task-container_single-task_description").innerText;
             if ((generalSibling.querySelector(".task-container_single-task_priority")).children[0].className === "visibility") {
@@ -175,13 +186,29 @@ function delegate() {
             alert("You're already editing one of the task!");
         } else if (essentialObj.running_process === "adding") {
             alert("Editing forbidden! Firstly complete adding operation!");
+        } else if (essentialObj.running_process === "confirmation") {
+            alert("Confirm deleting!");
         }
     } else if (clicked.getAttribute("src") === "res/checkbox.svg") {
-        generalSibling.querySelector(".task-container_single-task_description").classList.remove("crossed");
-        clicked.setAttribute("src", "res/checkbox-empty.svg"); 
+        if (essentialObj.running_process ===  null) {
+            generalSibling.querySelector(".task-container_single-task_description").classList.remove("crossed");
+            generalSibling.querySelector(".task-container_single-task_pencil").firstChild.setAttribute("src", "res/pencil.svg");
+            generalSibling.querySelector(".task-container_single-task_trashbin").firstChild.setAttribute("src", "res/trashbin.svg");
+            clicked.setAttribute("src", "res/checkbox-empty.svg");
+            if (generalSibling.querySelector(".task-container_single-task_priority").firstChild.className === "visibility") {
+                insertTask(false, generalSibling, false);
+            } else {
+                insertTask(true, generalSibling, false);
+            }
+        }
     } else if (clicked.getAttribute("src") === "res/checkbox-empty.svg") {
-        generalSibling.querySelector(".task-container_single-task_description").classList.add("crossed");
-        clicked.setAttribute("src", "res/checkbox.svg");
+        if (essentialObj.running_process === null) {
+            generalSibling.querySelector(".task-container_single-task_description").classList.add("crossed");
+            generalSibling.querySelector(".task-container_single-task_pencil").firstChild.setAttribute("src", "res/pencil-grey.svg");
+            generalSibling.querySelector(".task-container_single-task_trashbin").firstChild.setAttribute("src", "res/trashbin-grey.svg");
+            clicked.setAttribute("src", "res/checkbox.svg");
+            insertTask(false, generalSibling, true); 
+        }
     }
 }
 // editing task
@@ -197,3 +224,34 @@ function editTask(taskName) {
     essentialObj.editingNode.querySelector(".task-container_single-task_description").innerText = taskName;
     return [essentialObj.editingNode, isPrimaryTask];
 }
+// confiramtion of deleting
+let confirm_window = document.querySelector(".confirm-window");
+function confirmtaion(elem) {
+    essentialObj.running_process = "confirmation";
+    confirm_window.classList.remove("none");
+    confirm_window.querySelector(".confirm-window_title").innerText = "Вы действительно хотите удалить " 
+    + elem.querySelector(".task-container_single-task_description").innerText + "?";
+    elementPositioning();
+    let yes_bttn = confirm_window.querySelector(".confirm-window_inner-block_button-accept");
+    let no_bttn = confirm_window.querySelector(".confirm-window_inner-block_button-decline");
+    yes_bttn.addEventListener('click', function() {
+        elem.parentNode.removeChild(elem);
+        essentialObj.running_process = null;
+        confirm_window.classList.add("none");
+    });
+    no_bttn.addEventListener('click', function() {
+        confirm_window.classList.add("none");
+    });
+}
+// tracking window resizing
+function elementPositioning() {
+    let window_width = window.innerWidth;
+    let confirm_window_width = confirm_window.offsetWidth;
+    confirm_window.style.left = (Number(window_width / 2 - (confirm_window_width / 2))) + "px";
+    let task_field_width = document.querySelector(".task-container").offsetWidth;
+    console.log(task_field_width);
+    let task_field_leftMargin = window_width * 0.2;
+    toDoCard.style.left = (Number(task_field_width + task_field_leftMargin)) + "px";
+    console.log(window_width, confirm_window_width, task_field_leftMargin);
+} 
+window.onresize = elementPositioning;
