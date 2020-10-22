@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mine Sweeper</title>
+    <link rel="stylesheet" type="text/css" href="field_style.css">
+</head>
+<body>
+    <div class="general-block">
+        <div class="general-block_field">
+        </div>
+    </div>
+    <div class="results-block none">
+        <div class="results-block_exit">x</div>
+        <div class="results-block_inner-block">
+            <div class="results-block_result"></div>
+        <div class="results-block_game-stats">
+            <div class="game-stats_cells-unlocked">Ячеек открыто: </div>
+            <div class="game-stats_bomb-defused">Бомб обезврежено: </div>
+            <div class="game-stats_time">Время игры: </div>
+        </div>
+        <div class="reset-bttn">
+            <img src="res/reset-game.svg">
+        </div>
+        </div>
+    </div>
+    <div class="flags-remained-message-block none">
+        <div class="flags-remained-message-block_title">Флагов осталось:</div>
+        <div class="flags-remained-message-block_flags-amount"></div>
+    </div>
+    <script src="game.js"></script>
+    <script src="message-script.js"></script>
+</body>
+</html>
