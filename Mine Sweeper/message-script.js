@@ -11,7 +11,6 @@ async function showRemainedFlags(amount) {
 // print results of the game
 function printResult(reason, time) {
     end_time = performance.now();
-    printResultsBlock.classList.remove("none");
     for (const i of cells) {
         i.removeEventListener('click', onFieldCellLeftClick);
         i.removeEventListener('contextmenu', onFieldCellRightClick);
@@ -36,11 +35,12 @@ function printResult(reason, time) {
     cells_unlocked.textContent += 144 - gameVariables.bombs_amount - gameVariables.cells_to_unlock;
     bombs_defused.textContent += gameVariables.bombs_defused;
     time_spent.textContent += parseInt((end_time - time) / 60000) 
-    + " минут " + parseInt((end_time - time) / 1000) + " секунд";
+    + " минут " + parseInt((end_time - time) / 1000 % 60) + " секунд";
     reset_bttn.addEventListener('click', gameReset);
     exit_bttn.addEventListener('click', function() {
         printResultsBlock.classList.add("none"); 
     });
+    printResultsBlock.classList.remove("none");
 }
 // game reset
 function gameReset() {
