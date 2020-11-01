@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.general-block {
+    width: 700px;
+    min-height: 600px;
+    margin: auto;
+    margin-top: 100px;
+}
+.general-block_field {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: repeat(12, 50px);
+    gap: 8px;
+    padding: 4px;
+    grid-auto-flow: row;
+}
+.general-block_field-cell {
+   width: 50px;
+    height: 50px;
+    border: 1px solid #707070;
+    opacity: 1;
+    cursor: pointer;
+    font: normal normal bold 20px/24px Roboto;
+}
+.flag {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background-size: cover;
+    background-image: url(res/flag.svg);
+}
+.bomb {
+    background: url(res/bomb.svg) 0% 0% no-repeat padding-box;
+    background-size: cover;
+    background-color: #C42828;
+}
+.opened-cell {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    font-size: 20px/24px;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    line-height: 50px;
+}
+.closed-cell {
+    background: #BBBBBB 0% 0% no-repeat padding-box;
+}
+.none {
+    display: none;
+}
+.flags-remained-message-block, .results-block {
+    position: fixed;
+    top: 200px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 5px #00000029;
+}
+.flags-remained-message-block {
+    width: 200px;
+    height: 100px;
+    padding: 20px 20px 10px 20px;
+}
+.results-block {
+    width: 400px;
+    height: auto;
+    font-family: Roboto, sans-serif;
+}
+.results-block_inner-block {
+    padding: 30px 50px 20px 50px;
+}
+.results-block_result {
+    font-size: bold;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.results-block_game-stats {
+    padding: 20px 30px 30px 40px;
+    border: 1px solid #707070;
+}
+.game-stats_cells-unlocked,
+.game-stats_bomb-defused,
+.game-stats_time {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.reset-bttn {
+    margin: auto;
+    margin-top: 40px;
+    background: #3F88E8 0% 0% no-repeat padding-box;
+    height: 40px;
+    width: 120px;
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 5px 0px 5px 0px;
+    line-height: 40px;
+}
+.results-block_exit {
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right;
+    padding: 3.5px 7px 3.5px 7px;
+    text-align: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+.results-block_exit:hover {
+    background: #D10B0B 0% 0% no-repeat padding-box;
+    transition-duration: .5s;
+}
+.reset-bttn:hover {
+    border: #3F88E8 solid 1px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    transition-duration: .5s;
+}
+.flags-remained-message-block_title {
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.flags-remained-message-block_flags-amount {
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+}
+.checked-cell {
+    border: 2px solid #04BEEE80;
+    border-radius: 2px;
+}
