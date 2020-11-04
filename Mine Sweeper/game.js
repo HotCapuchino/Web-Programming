@@ -61,6 +61,7 @@ function onFieldCellLeftClick(reason) {
             makeMove(position);
             // console.log(gameVariables);
             start_time = performance.now();
+            countdown();
         } else {
             makeMove(position);
             // console.log(gameVariables);
@@ -74,8 +75,7 @@ function onFieldCellRightClick(reason) {
         let clicked_bttn = event.target;
         var position = (clicked_bttn.getAttribute("position")).split(' ');
     } else if (typeof(reason) === 'string') {
-        console.log("Functions was called because of keyboard action!");
-        return;
+        var position = reason.split(' ');
     }
     if (cells[(+position[0] - 1) * 12 + +position[1] - 1].classList.contains("flag")) {
         cells[(+position[0] - 1) * 12 + +position[1] - 1].classList.remove("flag");
@@ -258,6 +258,15 @@ function isOver() {
     }
 }
 onCellFocused(gameVariables.currentCell);
+// just wait
+function patientPlayer() {
+    if (performance.now() - start_time > 600000) {
+        printResult('timeisup', start_time);
+    }
+}
+function countdown() {
+    setInterval(patientPlayer, 1000);
+}
 /// What about the case you don't have a mouse, but have 
 /// a strong desire to play Minesweeper? 
 /// Keyboard game functions
@@ -277,14 +286,11 @@ function trackPressedButtons() {
         if (event.which == key) {
             controller[key].pressed = true;
         }
-        console.log(key);
-        console.log(controller[key]);
     }
-    console.log("----------");
 }
 function onKeyboardPress() {
     let position = gameVariables.currentCell.split(' ');
-    if (controller[17].pressed === true && controller[13].pressed === true 
+    if (controller[17].pressed === true && controller[13].pressed === true
         || controller[17].pressed === true && controller[32].pressed === true) {
         onFieldCellRightClick(gameVariables.currentCell);    
     } else if (controller[13].pressed === true || controller[32].pressed === true) {
@@ -302,10 +308,7 @@ function onKeyboardPress() {
         if (event.which == key) {
             controller[key].pressed = false;
         }
-        console.log(key);
-        console.log(controller[key]);
     }
-    console.log("^^^^^^^^^^^^^^^^");
 }
 // calculate where to go an go
 function markCell(position, code) {
