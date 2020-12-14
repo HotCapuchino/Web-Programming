@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../CSS/main-menu-style.css">
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <ul class="image_list">
+                <li>
+                    <div class="header-img"></div>
+                </li>
+                <li>
+                    <div class="header-img"></div>
+                </li>
+                <li>
+                    <div class="header-img"></div>
+                </li>
+                <li>
+                    <div class="header-img"></div>
+                </li>
+                <li>
+                    <div class="header-img"></div>
+                </li>
+                <li>
+                    <div class="header-img"></div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="body-wrapper">
+        <div class="body-wrapper_game-settings">
+            <div class="game-settings_menu">
+                <div class="game-settings_menu-title">Выберите опции для игры</div>
+                <div class="game-settings_menu-wrapper">
+                    <div class="game-settings_menu-inner-wrapper">
+                        <div>Количество пазлов</div>
+                        <div>Включить подсказки</div>
+                        <div>Игра на время</div>
+                    </div>
+                    <div class="game-settings_menu-inner-wrapper">
+                        <div>
+                            <input type="range" min="10" max="100" value="50">
+                            <span class="puzzles-amount"></span>
+                        </div>
+                        <div>
+                            <input type="checkbox" checked class="enable-hints">
+                        </div>
+                        <div>
+                            <input type="checkbox" checked class="enable-time-clock">
+                        </div>
+                    </div>
+                </div>
+                <div class="start-game">
+                    <a href="game.html" class="start-game-button">Начать игру</a>
+                </div>
+            </div>
+        </div>
+        <div class="body-wrapper_image-block">
+            <img class="chosen-image">
+        </div>
+    </div>
+    <script src="../Scripts/main-menu-script.js"></script>
+</body>
+</html>

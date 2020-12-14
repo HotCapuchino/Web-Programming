@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #1E1F2B;
+}
+div.slider-wrapper {
+    margin: auto;
+    width: 1000px;
+    height: auto;
+    padding-top: 150px;
+    overflow: hidden;
+    transition: .5s ease-in-out;
+    position: relative;
+}
+div.slider {
+    width: 1000px;
+    height: 600px; 
+    display: flex;
+    transition: .5s ease-in-out;
+    /* border: solid 10px #1A191D; */
+}
+img.slider-image {
+    width: 1000px;
+    height: 600px;
+    cursor: pointer;
+}
+.previous-button, .next-button {
+    position: absolute;
+    top: 50%;
+    height: 50px;
+    width: 25px;
+    color: white;
+    font-size: 20px;
+    z-index: 10;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.previous-button {
+    left: 20px;
+}
+.next-button {
+    right: 20px;
+}
+div.button-wrapper {
+    margin-top: 100px;
+    text-align: center;
+}
+a.choose-image-button {
+    background-color: dodgerblue;
+    text-decoration: none;
+    color:  #2a292e;
+    padding: 15px 25px 15px 25px;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+a.choose-image-button:hover {
+    color: dodgerblue;
+    background-color:  #2a292e;
+    border: 2px solid dodgerblue;
+    transition: .2s ease-in-out;
+}
