@@ -1,0 +1,30 @@
+@import '/client/styles/common/general.css';
+@import '/client/styles/common/reset.css';
+
+section {
+    margin-bottom: 10px;
+}
+input:not([type=checkbox]), select {
+    width: auto;
+}
+.mailing__subscribe {
+    padding: 0;
+    margin: 0;
+}
+@media (max-width: 480px) {
+    .general-wrapper {
+        background-color: #f8f6f6;
+        height: auto;
+    }
+    .title {
+        margin-top: 50px;
+    }
+}
+@media (orientation: landscape) and (   max-width: 640px) {
+    .title {
+        margin-top: 50px;
+    }
+    body {
+        height: 100%;
+    }
+}

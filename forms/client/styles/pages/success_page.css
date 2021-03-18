@@ -1,0 +1,12 @@
+@import '/client/styles/common/general.css';
+@import '/client/styles/common/reset.css';
+
+a {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+a:hover {
+    color: rgb(61, 190, 241);
+    transition: .1s ease-in-out;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="/client/styles/pages/admin_panel.css">
+</head>
+<body>
+    <div class="general-wrapper">
+        <div class="title">Conference Requests</div>
+        <div class="table-wrapper">
+            <table class="conference-requests">
+                <tbody>
+                    <tr class="table-header">
+                        <td class="table-header__user-name">User Name</td>
+                        <td class="table-header__user-surname">User Surname</td>
+                        <td class="table-header__user-email">User Email</td>
+                        <td class="table-header__user-phone">User Phone</td>
+                        <td class="table-header__chosen-topic">Chosen Conference Topic</td>
+                        <td class="table-header__chosen-payment">Chosen Type of Payment</td>
+                        <td class="table-header__mail_subscribe">Subscribed to mail</td>
+                        <td class="table-header__delete-checkbox">Mark to delete candidate</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="error-block"></div>
+        <button class="delete-button">Delete chosen</button>   
+    </div>
+    <script src="/client/scripts/admin_panel.js"></script>
+</body>
+</html>

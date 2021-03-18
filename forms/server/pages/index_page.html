@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=`device-width`, initial-scale=1.0">
+    <title>Index Page</title>
+    <link rel="stylesheet" type="text/css" href="/client/styles/pages/index.css">
+</head>
+<body>
+    <div class="general-wrapper">
+        <div class="title">Submit to our conference online!</div>
+        <form class="conference-form">
+            <section class="contact-info">
+            <label class="name">
+                <div class="name__title">Name</div>
+                <input type="text" name="user_name" placeholder="Your name">
+            </label>
+            <label class="surname">
+                <div class="surname__title">Surname</div>
+                <input type="text" name="user_surname" placeholder="Your surname">   
+            </label>
+            <label class="mail">
+                <div class="mail__title">Email</div>
+                <input type="email" name="user_mail" placeholder="Your mail">   
+            </label>
+            <label class="phone">
+                <div class="phone__title">Phone Number</div>
+                <input type="number" name="user_phone" placeholder="Your phone number">   
+            </label>
+            <label class="conference-topic">
+                <div class="conference-topic__title">Choose conference topic you like the most</div>
+                <select name="chosen_topic" class="conference-topic__select">
+                    <option value="business" selected>Business</option>
+                    <option value="tech">Technologies</option>
+                    <option value="marketing">Marketing</option>
+                </select>   
+            </label>
+            </section>
+            <section class="payment">
+                <div class="payment__title">Choose type of payment</div>
+                <select name="chosen_payment" class="payment__select">
+                    <option value="web_money" selected>WebMoney</option>
+                    <option value="yandex_money">Yandex Money</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="credit_card">Credit Card</option>
+                </select>
+            </section>
+            <section class="mailing">
+                <label class="mailing__label">
+                    <div class="mailing__title">Do you want to subscribe to receive new info?</div>
+                    <input type="checkbox" class="mailing__subscribe" name="mail_subscribe">
+                </label>
+            </section>
+            <button class="submit-button">Sign up for conference</button>
+        </form>
+        <div class="error_block"></div>
+    </div>
+    <script src="/client/scripts/index.js"></script>
+</body>
+</html>
