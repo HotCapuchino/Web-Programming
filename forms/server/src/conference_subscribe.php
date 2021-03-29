@@ -14,7 +14,7 @@
         if ($exception_info[0] == '1045') {
             $response['message'] = 'Unable to connect to database!';
         } else {
-            $response['message'] = 'Something unpredictable had happened, we are already working on it!';
+            $response['message'] = print_r($exception_info);
         }
         echo json_encode($response);
     }

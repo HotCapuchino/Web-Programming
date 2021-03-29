@@ -2,10 +2,12 @@
     const SIGN_IN_ENDPOINT = '/server/src/signing_in.php';
     let form = document.querySelector('form');
     let form_inputs = form.querySelectorAll('input');
-    console.log(form_inputs);
     let sign_in_button = document.querySelector('.login-button');
+    let error_block = document.querySelector('.error-block'); 
 
     sign_in_button.addEventListener('click', function(event) {
+        error_block.classList.add('none');
+        error_block.textContent = '';
         event.preventDefault();
         form_inputs.forEach(input => input.classList.remove('wrong_input'))
         if (!inputHandler()) return;
@@ -13,10 +15,11 @@
         .then(response => response.json())
         .then(parsed_data => {
             if (parsed_data.succeed) {
-                window.location.replace('/server/pages/admin_panel.html');
+                window.location.replace('/server/pages/admin_panel.php');
             } else {
                 for (const msg of parsed_data.message) {
-                    document.querySelector('.error_block').textContent += `${msg}\n`;
+                    error_block.classList.remove('none');
+                    error_block.textContent += `${msg}\n`;
                 }
                 if (parsed_data?.data) {
                     pointOutWrongInputs(parsed_data.data);

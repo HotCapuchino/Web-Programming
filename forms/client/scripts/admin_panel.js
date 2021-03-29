@@ -5,6 +5,7 @@
     let delete_button = document.querySelector('.delete-button');
     let table_rows = [];
     let table_with_requests = document.querySelector('.conference-requests').querySelector('tbody');
+    let error_block = document.querySelector('.error-block');
 
     async function loadRequests() {
         let response = await (await fetch(DISPLAY_ENDPOINT)).json();
@@ -42,6 +43,8 @@
     }
 
     delete_button.addEventListener('click', async function() {
+        error_block.classList.add('none');
+        error_block.textContent = '';
         let elems_to_delete = [];
         for (const table_row of table_rows) {
             let input = table_row.querySelector('input');
@@ -56,12 +59,12 @@
         let del = {
             'to_delete': elems_to_delete
         };
-        console.log(del);
         sendData(DELETE_ENDPOINT, del)
         .then(response => response.json())
         .then(parsed_data => {
             if (!parsed_data.succeed) {
-                document.querySelector('.error-block').textContent = response.message;
+                error_block.classList.remove('none');
+                error_block.textContent = response.message;
             }
             for (const id of parsed_data.data) {
                 for (const table_row of table_rows) {

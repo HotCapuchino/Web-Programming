@@ -1,8 +1,8 @@
 <?php
     namespace database_class\connection_to_db;
     use Exception;
-    // error_reporting(E_ALL);
-    // ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     class DatabaseOperator {
 
         protected $host = '';

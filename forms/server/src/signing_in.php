@@ -1,4 +1,7 @@
 <?php
+    session_set_cookie_params(600, '/server/pages/admin_panel.php', null, true);
+    session_start();
+    $_SESSION['logged_in'] = false;
     use database_class\connection_to_db\DatabaseOperator;
     include_once '../include/connection_to_database.php';
     include_once '../include/database_data.php';
@@ -33,6 +36,7 @@
             $response = [
                 'succeed' => true
             ];
+            $_SESSION['logged_in'] = true;
         } else {
             $response = [
                 'succeed' => false,

@@ -3,9 +3,12 @@
     let submit_button = document.querySelector('.submit-button');
     let conference_form = document.querySelector('.conference-form');
     let form_inputs = conference_form.querySelectorAll('input');
-    let form_selects = conference_form.querySelectorAll('select');  
+    let form_selects = conference_form.querySelectorAll('select'); 
+    let error_block = document.querySelector('.error-block'); 
 
     submit_button.addEventListener('click', function(event) {
+        error_block.classList.add('none');
+        error_block.textContent = '';
         event.preventDefault();
         form_inputs.forEach(input => input.classList.remove('wrong_input'))
         if (!inputHandler()) return;
@@ -16,7 +19,8 @@
                 window.location.replace('/server/pages/success_page.html');
             } else {
                 for (const msg of parsed_data.message) {
-                    document.querySelector('.error_block').textContent += `${msg}\n`;
+                    error_block.classList.remove('none');
+                    error_block.textContent += `${msg}\n`;
                 }
                 if (parsed_data?.data) {
                     pointOutWrongInputs(parsed_data.data);
@@ -58,8 +62,7 @@
         let form_fields = {};
         for (const input of form_inputs) {
             if (input.name == 'mail_subscribe') {
-                form_fields[`${input.name}`] = +input.checked;
-                console.log(input.checked);
+                form_fields[`${input.name}`] = Number(input.checked);
                 continue;
             }
             form_fields[`${input.name}`] = input.value;
@@ -83,7 +86,13 @@
                     isValid = false;
                 }
             }
-        }
+            if (input.name == 'user_mail') {
+                if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(input.value)) {
+                    input.classList.add('wrong_input');
+                    isValid = false;
+                }
+            }
+        } 
         return isValid;
     }
 }

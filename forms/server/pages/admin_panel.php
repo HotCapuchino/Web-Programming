@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,15 @@
 </head>
 <body>
     <div class="general-wrapper">
-        <div class="title">Conference Requests</div>
+        <?php
+            if (!$_SESSION['logged_in']) {
+                echo '<div class="title">You re not logged in!</div>';
+                echo '<a href="./sign_in.html">Sign in</a>';
+                die();
+            }
+        ?>
+        <div class="title">Conference Requests
+        </div>
         <div class="table-wrapper">
             <table class="conference-requests">
                 <tbody>
@@ -26,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="error-block"></div>
+        <div class="error-block none"></div>
         <button class="delete-button">Delete chosen</button>   
     </div>
     <script src="/client/scripts/admin_panel.js"></script>
