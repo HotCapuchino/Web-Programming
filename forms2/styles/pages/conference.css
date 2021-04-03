@@ -1,0 +1,28 @@
+@import '/styles/common/general.css';
+@import '/styles/common/reset.css';
+
+.login-button {
+    margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+    .general-wrapper {
+        background-color: #f8f6f6;
+        height: auto;
+    }
+    .title {
+        margin-top: 50px;
+    }
+}
+@media (orientation: landscape) and (   max-width: 640px) {
+    .general-wrapper {
+        background-color: #f8f6f6;
+        height: auto;
+    }
+    .title {
+        margin-top: 50px;
+    }
+    body {
+        height: 100%;
+    }
+}
