@@ -1,0 +1,29 @@
+.start-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f6f6;
+    padding: 75px 60px 50px 60px;
+    border-radius: 5px;
+}
+.start-block__register-btn {
+    background-color: #3639ff;
+    color: #fff !important;
+    display: block;
+    padding: 12px 8px;
+    font-size: 18px;
+    border: solid 2px transparent;
+}
+.start-block__register-btn:hover {
+    color: #3639ff !important;
+    background-color: transparent;
+    border-color: #3639ff;
+}
+.start-block__admin-ref {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+.start-block__admin-ref:hover {
+    color: #3639ff;
+}
