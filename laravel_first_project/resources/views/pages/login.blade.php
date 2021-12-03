@@ -23,10 +23,11 @@
             @enderror
             <input type="password" required placeholder="password" name="password">
         </label>
-        <button>Sign in</button>
+        <button type="submit">Sign in</button>
     </form>
     @error('login-error')
         <div>{{$message}}</div>
     @enderror
+    <a href="/auth/register">Sign up</a>
 </div>
 @endsection

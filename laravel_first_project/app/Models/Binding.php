@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Binding extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'password'
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
 }

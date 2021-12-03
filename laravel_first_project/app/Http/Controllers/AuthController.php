@@ -22,7 +22,7 @@ class AuthController extends Controller
         $remember = $request->input('remember', false);
 
         if (Auth::attempt($credentials, $remember)) {
-            $this->redirectToMain($request);
+            return $this->redirectToMain($request);
         } else {
             return redirect(RouteServiceProvider::LOGIN)->withErrors([
                 'login-error' => 'Oops! Smth went wrong!'
@@ -43,10 +43,19 @@ class AuthController extends Controller
 
         $remember = $request->input('remember', false);
         $user = User::create($credentials);
+        $settings_initialized = UserSettingsController::init_settings($user->toArray()['id']);
+
+        if (!$settings_initialized) {
+            if ($this->revertCreatingUser($user)) {
+                return redirect(RouteServiceProvider::LOGIN)->withErrors([
+                    'registration-error' => 'Oops! Smth went wrong!'
+                ]);
+            }
+        }
 
         if ($user) {
             if (Auth::login($user, $remember)) {
-                $this->redirectToMain($request);
+                return $this->redirectToMain($request);
             } else {
                 return redirect(RouteServiceProvider::LOGIN)->withErrors([
                     'registration-error' => 'Oops! Smth went wrong!'
@@ -80,4 +89,9 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/app/main');
     }
+
+    private function revertCreatingUser($user_instance) {
+        return $user_instance->delete();
+    }
+
 }
