@@ -4,32 +4,42 @@
     Main
 @endsection
 
+@push('styles')
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+@endpush
+
 @section('app-content--inner')
+    <div class="title">Main Page</div>
     <div class="main-container">
-        <section class="welcome-app"></section>
-        <section class="user-info">
-            <div class="user-info-user-credentials">
-                <form action="/app/main/edit" method="POST">
+        <section class="welcome-app">Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </section>
+        <section class="user-info-user-credentials">
+            <div class="field-block">
+                <div class="user-info--field">Name: {{$name}}</div>
+                <div class="collapse-button">Change</div>
+                <form action="/app/main/edit" method="POST" class="user-info--hidden-block none">
                     @csrf
-                    <label>
-                        <div>Name: {{$name}}</div>
-                        <button>Change</button>
-                        <input type="text" name="name" value="{{$name}}">
-                    </label>
-                    <label>
-                        <div>Email: {{$email}}</div>
-                        <button>Change</button>
-                        <input type="text" name="email" value="{{$email}}">
-                    </label>
-                    <button>Change password</button>
-                    <label>
-                        <div>Old password</div>
-                        <input type="password" name="old_password">
-                    </label>
-                    <label>
-                        <div>New password</div>
-                        <input type="password" name="password">
-                    </label>
+                    @error('name')
+                        <div>{{$message}}</div>
+                    @enderror
+                    <input type="text" name="name" value="{{$name}}">
+                    <button class="submit-button" type="submit">Save</button>
+                </form>
+            </div>
+            <div class="field-block">
+                <div class="user-info--field">Email: {{$email}}</div>
+                <div class="collapse-button">Change</div>
+                <form action="/app/main/edit" method="POST" class="user-info--hidden-block none">
+                    @csrf
+                    @error('email')
+                        <div>{{$message}}</div>
+                    @enderror
+                    <input class="user-info--hidden-block none" type="text" name="email" value="{{$email}}">
+                    <button class="submit-button" type="submit">Save</button>
                 </form>
             </div>
         </section>

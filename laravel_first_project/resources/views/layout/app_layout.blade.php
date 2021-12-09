@@ -3,6 +3,8 @@
 @section('content-app')
     <div class="app-layout-container">
         @include('components.navbar')
-        @yield('app-content--inner')
+        <div class="app-content--inner">
+            @yield('app-content--inner')
+        </div>
     </div>
 @endsection

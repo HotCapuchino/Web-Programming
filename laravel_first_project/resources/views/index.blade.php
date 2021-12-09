@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{{asset('css/app.css')}}" rel="stylesheet">
+        <link href="{{url('css/app.css')}}" rel="stylesheet">
         <title>@yield('title')</title>
     </head>
     <body>
@@ -14,5 +14,6 @@
                 @yield('content-auth')
             @endauth
         </div>
+        <script src="{{url('js/index.js')}}"></script>
     </body>
 </html>
